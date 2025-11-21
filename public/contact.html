@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Contact & Elevations</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: "Montserrat", sans-serif;
+			}
+
+			body {
+				background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+				min-height: 100vh;
+				color: #333;
+				line-height: 1.6;
+			}
+
+			.header {
+				background: rgba(255, 255, 255, 0.95);
+				padding: 0.8rem 2rem;
+				position: fixed;
+				width: 100%;
+				top: 0;
+				z-index: 1000;
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.header-logo {
+				display: flex;
+				align-items: center;
+			}
+
+			.header-logo img {
+				height: auto;
+				width: 120px;
+			}
+
+			.nav {
+				display: flex;
+				align-items: center;
+				gap: 2rem;
+			}
+
+			.nav-link {
+				color: #333;
+				text-decoration: none;
+				font-weight: 500;
+				padding: 0.6rem 1.2rem;
+				border-radius: 8px;
+				transition: all 0.3s ease;
+				font-size: 1rem;
+			}
+
+			.nav-link:hover,
+			.nav-link.active {
+				background: rgba(8, 96, 54, 0.1);
+				color: #086036;
+			}
+
+			.hero {
+				height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 6rem 1rem 2rem 1rem;
+				text-align: center;
+				background: linear-gradient(
+						rgba(255, 255, 255, 0.9),
+						rgba(255, 255, 255, 0.9)
+					),
+					url("/assets/hero-bg.jpg") center/cover;
+			}
+
+			.hero-content {
+				max-width: 800px;
+				margin: 0 auto;
+			}
+
+			.hero h1 {
+				font-size: 3rem;
+				color: #086036;
+				margin-bottom: 1.5rem;
+				line-height: 1.2;
+			}
+
+			.hero p {
+				font-size: 1.2rem;
+				color: #4a5568;
+				margin-bottom: 2rem;
+				line-height: 1.8;
+			}
+
+			.book-btn {
+				display: inline-block;
+				background: #086036;
+				color: white;
+				padding: 1rem 2.5rem;
+				border-radius: 50px;
+				text-decoration: none;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				border: 2px solid #086036;
+			}
+
+			.book-btn:hover {
+				background: transparent;
+				color: #086036;
+				transform: translateY(-2px);
+				box-shadow: 0 4px 12px rgba(8, 96, 54, 0.2);
+			}
+
+			.contact-section {
+				padding: 4rem 2rem;
+				background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+				/* min-height: 100vh; */
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.contact-container {
+				max-width: 1200px;
+				width: 100%;
+				margin: 0 auto;
+			}
+
+			.contact-title {
+				font-size: 3rem;
+				font-weight: 700;
+				color: #086036;
+				text-align: center;
+				margin-bottom: 1rem;
+			}
+
+			.contact-subtitle {
+				font-size: 1.2rem;
+				color: #4a5568;
+				text-align: center;
+				margin-bottom: 3rem;
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.contact-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 2rem;
+				margin-top: 2rem;
+			}
+
+			.contact-card {
+				background: rgba(255, 255, 255, 0.95);
+				padding: 2.5rem 2rem;
+				border-radius: 20px;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+				text-align: center;
+				transition: all 0.3s ease;
+				border: 1px solid rgba(8, 96, 54, 0.1);
+			}
+
+			.contact-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 8px 30px rgba(8, 96, 54, 0.15);
+				border-color: rgba(8, 96, 54, 0.2);
+			}
+
+			.contact-card h3 {
+				color: #086036;
+				margin-bottom: 1rem;
+				font-size: 1.5rem;
+				font-weight: 600;
+			}
+
+			.contact-card p {
+				color: #4a5568;
+				margin-bottom: 1.5rem;
+				line-height: 1.6;
+			}
+
+			.contact-card a {
+				color: #086036;
+				text-decoration: none;
+				font-weight: 500;
+				display: inline-block;
+				padding: 0.8rem 1.5rem;
+				border-radius: 8px;
+				transition: all 0.3s ease;
+				background: rgba(8, 96, 54, 0.05);
+				border: 1px solid rgba(8, 96, 54, 0.1);
+			}
+
+			.contact-card a:hover {
+				background: rgba(8, 96, 54, 0.1);
+				transform: translateY(-2px);
+			}
+
+			.elevations-section {
+				padding: 4rem 1rem;
+				background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+				/* min-height: 100vh; */
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				border-radius: 20px;
+			}
+
+			.elevations-title {
+				font-size: 2.5rem;
+				font-weight: 700;
+				margin-bottom: 3rem;
+				color: #000;
+				letter-spacing: 1px;
+				text-align: center;
+			}
+
+			.elevations-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 4fr));
+				gap: 2rem;
+				padding: 1rem;
+				max-width: 1400px;
+				width: 100%;
+				margin: 0 auto;
+				justify-content: center;
+			}
+
+			.elevation-card {
+				background: rgba(255, 255, 255, 0.95);
+				border-radius: 20px;
+				box-shadow: 0 10px 30px rgba(8, 96, 54, 0.08);
+				border: 1px solid rgba(8, 96, 54, 0.1);
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				text-decoration: none;
+				color: inherit;
+				position: relative;
+				backdrop-filter: blur(10px);
+			}
+
+			.elevation-card:hover {
+				transform: translateY(-8px);
+				box-shadow: 0 20px 40px rgba(8, 96, 54, 0.15);
+				border-color: rgba(8, 96, 54, 0.2);
+			}
+
+			.elevation-img {
+				width: 100%;
+				height: 220px;
+				object-fit: cover;
+				border-bottom: 1px solid rgba(8, 96, 54, 0.08);
+				transition: transform 0.3s ease;
+			}
+
+			.elevation-card:hover .elevation-img {
+				transform: scale(1.05);
+			}
+
+			.elevation-title {
+				font-size: 1rem;
+				font-weight: 600;
+				margin: 1.2rem 0 0.8rem 0;
+				color: #086036;
+				text-align: center;
+				padding: 0 1.5rem;
+				line-height: 1.4;
+			}
+
+			.elevation-desc {
+				font-size: 0.95rem;
+				color: #4a5568;
+				margin-bottom: 1rem;
+				padding: 0 1.5rem;
+				text-align: justify;
+				line-height: 1.6;
+			}
+
+			.elevation-details {
+				width: 100%;
+				padding: 1.2rem 1.5rem;
+				background: linear-gradient(
+					to bottom,
+					rgba(8, 96, 54, 0.03),
+					rgba(8, 96, 54, 0.08)
+				);
+				border-top: 1px solid rgba(8, 96, 54, 0.08);
+				margin-top: auto;
+			}
+
+			.elevation-detail-row {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 0.8rem;
+				font-size: 0.95rem;
+			}
+
+			.elevation-detail-row:last-child {
+				margin-bottom: 0;
+			}
+
+			.elevation-detail-label {
+				color: #718096;
+				font-weight: 500;
+				font-size: 0.8rem;
+			}
+
+			.elevation-detail-value {
+				color: #2d3748;
+				font-weight: 600;
+				font-size: 0.8rem;
+			}
+
+			.elevation-price {
+				font-size: 1.2rem;
+				font-weight: 700;
+				color: #1e2023;
+				margin-top: 1rem;
+				text-align: center;
+				padding: 0.8rem;
+				background: rgba(8, 96, 54, 0.05);
+				border-radius: 12px;
+				border: 1px solid rgba(8, 96, 54, 0.1);
+			}
+
+			.glass-card {
+				background: rgba(255, 255, 255, 0.95);
+				padding: 3rem 2rem;
+				border-radius: 20px;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+				text-align: center;
+				max-width: 800px;
+				margin: 2rem auto;
+				backdrop-filter: blur(10px);
+				margin-top: 8rem;
+			}
+
+			.glass-card h1 {
+				color: #086036;
+				margin-bottom: 1.5rem;
+				font-size: 2rem;
+			}
+
+			.glass-card p {
+				color: #4a5568;
+				margin-bottom: 2rem;
+				font-size: 1.1rem;
+				line-height: 1.8;
+			}
+
+			@media (max-width: 768px) {
+				.header {
+					padding: 0.8rem 1rem;
+				}
+
+				.nav {
+					gap: 1rem;
+				}
+
+				.nav-link {
+					padding: 0.5rem 1rem;
+					font-size: 0.9rem;
+				}
+
+				.hero {
+					padding: 5rem 1rem 2rem 1rem;
+				}
+
+				.hero h1 {
+					font-size: 2rem;
+					margin-bottom: 1rem;
+				}
+
+				.hero p {
+					font-size: 1rem;
+					margin-bottom: 1.5rem;
+				}
+
+				.book-btn {
+					padding: 0.8rem 2rem;
+					font-size: 0.9rem;
+				}
+
+				.contact-section {
+					padding: 4rem 1.5rem;
+				}
+
+				.contact-title {
+					font-size: 2.5rem;
+				}
+
+				.contact-subtitle {
+					font-size: 1.1rem;
+					margin-bottom: 2.5rem;
+				}
+
+				.contact-grid {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+				}
+
+				.contact-card {
+					padding: 2rem 1.5rem;
+				}
+
+				.elevations-section {
+					padding: 3rem 1rem;
+				}
+
+				.elevations-title {
+					font-size: 2rem;
+					margin-bottom: 2rem;
+				}
+
+				.elevations-grid {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+					padding: 1rem;
+				}
+
+				.elevation-img {
+					height: 200px;
+				}
+
+				.elevation-title {
+					font-size: 1.1rem;
+					margin: 1rem 0 0.6rem 0;
+				}
+
+				.elevation-desc {
+					font-size: 0.9rem;
+					margin-bottom: 0.8rem;
+				}
+
+				.elevation-details {
+					padding: 1rem;
+				}
+
+				.elevation-price {
+					font-size: 1.2rem;
+					margin-top: 0.8rem;
+					padding: 0.6rem;
+				}
+
+				.glass-card {
+					padding: 2rem 1.5rem;
+					margin: 1.5rem 1rem;
+					margin-top: 12rem;
+				}
+
+				.glass-card h1 {
+					font-size: 1.8rem;
+					margin-bottom: 1rem;
+				}
+
+				.glass-card p {
+					font-size: 1rem;
+					margin-bottom: 1.5rem;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.header {
+					flex-direction: column;
+					padding: 1rem;
+					gap: 1rem;
+				}
+
+				.header-logo {
+					margin-bottom: 0.5rem;
+				}
+
+				.nav {
+					width: 100%;
+					justify-content: center;
+					gap: 0.8rem;
+				}
+
+				.nav-link {
+					padding: 0.4rem 0.8rem;
+					font-size: 0.85rem;
+				}
+
+				.hero h1 {
+					font-size: 1.8rem;
+				}
+
+				.hero p {
+					font-size: 0.95rem;
+				}
+
+				.book-btn {
+					width: 100%;
+					text-align: center;
+				}
+
+				.contact-section {
+					padding: 3rem 1rem;
+				}
+
+				.contact-title {
+					font-size: 2rem;
+				}
+
+				.contact-subtitle {
+					font-size: 1rem;
+					margin-bottom: 2rem;
+				}
+
+				.contact-card {
+					padding: 1.5rem 1rem;
+				}
+
+				.contact-card h3 {
+					font-size: 1.3rem;
+				}
+
+				.elevations-title {
+					font-size: 1.8rem;
+				}
+
+				.glass-card {
+					padding: 1.5rem 1rem;
+				}
+			}
+
+			.footer {
+				background: rgba(255, 255, 255, 0.95);
+				padding: 1.5rem 2rem;
+				border-top: 1px solid rgba(8, 96, 54, 0.1);
+			}
+
+			.footer-content {
+				max-width: 1200px;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 1rem;
+			}
+
+			.footer-copyright {
+				color: #4a5568;
+				font-size: 0.9rem;
+			}
+
+			.footer-links {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+			}
+
+			.footer-link {
+				color: #086036;
+				text-decoration: none;
+				font-size: 0.9rem;
+				transition: color 0.3s ease;
+			}
+
+			.footer-link:hover {
+				color: #044326;
+			}
+
+			.footer-divider {
+				color: #cbd5e0;
+			}
+
+			@media (max-width: 768px) {
+				.footer {
+					padding: 1.2rem 1.5rem;
+				}
+
+				.footer-content {
+					flex-direction: column;
+					text-align: center;
+					gap: 0.8rem;
+				}
+
+				.footer-links {
+					justify-content: center;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.footer {
+					padding: 1rem;
+				}
+
+				.footer-copyright {
+					font-size: 0.85rem;
+				}
+
+				.footer-link {
+					font-size: 0.85rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<a href="/" class="header-logo">
+				<img src="/logo.svg" alt="Logo" style="width: 120px" />
+			</a>
+			<nav class="nav">
+				<a href="/" class="nav-link">Home</a>
+				<a href="/mdc-ecohomes" class="nav-link">Bungalows</a>
+				<a href="#contact" class="nav-link active">Contact Us</a>
+			</nav>
+		</header>
+		<div class="cards-row">
+			<div class="glass-card">
+				<div
+					class="welcome-flex"
+					style="
+						display: flex;
+						flex-wrap: wrap;
+						align-items: center;
+						justify-content: space-between;
+						gap: 2rem;
+					"
+				>
+					<div class="welcome-left" style="flex: 1 1 240px; min-width: 220px">
+						<h1>Welcome to MyDearCity Builders Pvt. Ltd.</h1>
+						<p>
+							Discover our stunning elevation designs. Choose your favorite and
+							book your dream project with us!
+						</p>
+						<a href="/" class="book-btn">Book Now</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<section class="elevations-section" id="elevations">
+			<div class="elevations-title">Our Popular Bunglows</div>
+			<div class="elevations-grid">
+				<!-- 5BHK Premium Elevation -->
+				<a href="/bungalows/5bhk-premium-elevation-2835" class="elevation-card">
+					<img
+						src="/assets/elevations/5_BHK_2835/elevation.jpeg"
+						alt="5BHK Premium Elevation"
+						class="elevation-img"
+					/>
+					<div class="elevation-title">5BHK Premium Elevation</div>
+					<div class="elevation-details">
+						<div class="elevation-detail-row">
+							<span class="elevation-detail-value">Durgapur</span>
+							<span class="elevation-detail-value">2957.84 sqft</span>
+							<span class="elevation-detail-value">Floors : 3</span>
+						</div>
+						<div class="elevation-price">₹79.99 Lakh</div>
+					</div>
+				</a>
+
+				<!-- 5BHK Economic Elevation -->
+				<a href="/bungalows/5bhk-premium-elevation-1803" class="elevation-card">
+					<img
+						src="/assets/elevations/5_BHK_1803/Elevations/elevation1-5bhk.png"
+						alt="5BHK Economic Elevation"
+						class="elevation-img"
+					/>
+					<div class="elevation-title">5BHK Economic Elevation</div>
+					<div class="elevation-details">
+						<div class="elevation-detail-row">
+							<span class="elevation-detail-value">Durgapur</span>
+							<span class="elevation-detail-value">1907 sqft</span>
+							<span class="elevation-detail-value">Floors : 3</span>
+						</div>
+						<div class="elevation-price">₹45.99 Lakh</div>
+					</div>
+				</a>
+
+				<!-- 5BHK Top selling Elevation -->
+				<a href="/bungalows/5bhk-premium-elevation-2250" class="elevation-card">
+					<img
+						src="/assets/elevations/5_BHK_2250/elevation3-5bhk.jpg"
+						alt="5BHK Premium Elevation"
+						class="elevation-img"
+					/>
+					<div class="elevation-title">5BHK Top selling Elevation</div>
+					<div class="elevation-details">
+						<div class="elevation-detail-row">
+							<span class="elevation-detail-value">Durgapur</span>
+							<span class="elevation-detail-value">2360 sqft</span>
+							<span class="elevation-detail-value">Floors : 3</span>
+						</div>
+						<div class="elevation-price">₹63.99 Lakh</div>
+					</div>
+				</a>
+
+				<!-- 4BHK Premium Elevation -->
+				<a href="/bungalows/4bhk-premium-elevation" class="elevation-card">
+					<img
+						src="/assets/elevations/4_BHK_1600/elevation.png"
+						alt="4BHK Elevation"
+						class="elevation-img"
+					/>
+					<div class="elevation-title">4BHK Premium Elevation</div>
+					<div class="elevation-details">
+						<div class="elevation-detail-row">
+							<span class="elevation-detail-value">Durgapur</span>
+							<span class="elevation-detail-value">1763 sqft</span>
+							<span class="elevation-detail-value"> Floor : 2</span>
+						</div>
+						<div class="elevation-price">₹49.99 Lakh</div>
+					</div>
+				</a>
+
+				<!-- 4BHK Economic Elevation -->
+				<a href="/bungalows/4bhk-premium-elevation-2" class="elevation-card">
+					<img
+						src="/assets/elevations/4_BHK_1600/2nd model/elevation2-4bhk.png"
+						alt="4BHK Economic Elevation"
+						class="elevation-img"
+					/>
+					<div class="elevation-title">4BHK Economic Elevation</div>
+					<div class="elevation-details">
+						<div class="elevation-detail-row">
+							<span class="elevation-detail-value">Durgapur</span>
+							<span class="elevation-detail-value">1722 sqft</span>
+							<span class="elevation-detail-value">Floor : 2</span>
+						</div>
+						<div class="elevation-price">₹38.99 Lakh</div>
+					</div>
+				</a>
+
+				<!-- 3BHK Premium Elevation -->
+				<a href="/bungalows/3-bhk-premium-elevation" class="elevation-card">
+					<img
+						src="/assets/elevations/3_BHK_1600/800+800=1600-elevation1-3bhk.png"
+						alt="3BHK Premium Elevation"
+						class="elevation-img"
+					/>
+					<div class="elevation-title">3BHK Premium Elevation</div>
+					<div class="elevation-details">
+						<div class="elevation-detail-row">
+							<span class="elevation-detail-value">Durgapur</span>
+							<span class="elevation-detail-value">1722 sqft</span>
+							<span class="elevation-detail-value">Floor : 2</span>
+						</div>
+						<div class="elevation-price">₹44.99 Lakh</div>
+					</div>
+				</a>
+
+				<!-- 3BHK Economic Elevation -->
+				<a href="/bungalows/3bhk-economic-elevation" class="elevation-card">
+					<img
+						src="/assets/elevations/3_BHK_1202/Economic Elevations/new.jpg"
+						alt="3BHK Economic Elevation"
+						class="elevation-img"
+					/>
+					<div class="elevation-title">3BHK Economic Elevation</div>
+					<div class="elevation-details">
+						<div class="elevation-detail-row">
+							<span class="elevation-detail-value">Durgapur</span>
+							<span class="elevation-detail-value">1306 sqft</span>
+							<span class="elevation-detail-value">Floor : 2</span>
+						</div>
+						<div class="elevation-price">₹28.99 Lakh</div>
+					</div>
+				</a>
+
+				<!-- 3BHK Top Selling Elevation -->
+				<a
+					href="/bungalows/3-bhk-premium-elevation-1500"
+					class="elevation-card"
+				>
+					<img
+						src="/assets/elevations/3_BHK_1500/elevation1-3bhk.jpg"
+						alt="3BHK Top Selling Elevation"
+						class="elevation-img"
+					/>
+					<div class="elevation-title">3BHK Top Selling Elevation</div>
+					<div class="elevation-details">
+						<div class="elevation-detail-row">
+							<span class="elevation-detail-value">Durgapur</span>
+							<span class="elevation-detail-value">1602 sqft</span>
+							<span class="elevation-detail-value">Floors : 2</span>
+						</div>
+						<div class="elevation-price">₹32.99 Lakh</div>
+					</div>
+				</a>
+
+				<!-- 2BHK Modern Elevation -->
+				<a href="/bungalows/2-bhk-812-sqft" class="elevation-card">
+					<img
+						src="/assets/elevations/2_BHK_812/elevation.png"
+						alt="5BHK 2250 Elevation"
+						class="elevation-img"
+					/>
+					<div class="elevation-title">2BHK Modern Elevation</div>
+					<div class="elevation-details">
+						<div class="elevation-detail-row">
+							<span class="elevation-detail-value">Durgapur</span>
+							<span class="elevation-detail-value">812 sqft</span>
+							<span class="elevation-detail-value">Floors : 2</span>
+						</div>
+						<div class="elevation-price">₹16.99 Lakh</div>
+					</div>
+				</a>
+
+				<!-- 2BHK Premium Elevation -->
+				<a href="/bungalows/2-bhk-1070-sqft" class="elevation-card">
+					<img
+						src="/assets/elevations/2_BHK_1070/elevation.png"
+						alt="5BHK 2250 Elevation"
+						class="elevation-img"
+					/>
+					<div class="elevation-title">2BHK Premium Elevation</div>
+					<div class="elevation-details">
+						<div class="elevation-detail-row">
+							<span class="elevation-detail-value">Durgapur</span>
+							<span class="elevation-detail-value">1070 sqft</span>
+							<span class="elevation-detail-value">Floors : 2</span>
+						</div>
+						<div class="elevation-price">₹21.99 Lakh</div>
+					</div>
+				</a>
+			</div>
+		</section>
+		<div id="book" class="glass-card" style="margin-bottom: 5rem">
+			<h1>Book Your Elevation</h1>
+			<p>
+				Ready to get started? Click the button below to book your elevation or
+				contact us for more information.
+			</p>
+			<a href="/" class="book-btn">Book Now</a>
+		</div>
+		<section class="contact-section" id="contact">
+			<div class="contact-container">
+				<h2 class="contact-title">Contact Us</h2>
+				<p class="contact-subtitle">
+					Get in touch with us for any inquiries about our bungalows
+				</p>
+				<div class="contact-grid">
+					<div class="contact-card">
+						<h3>Phone</h3>
+						<p>Call us directly for immediate assistance</p>
+						<a href="tel:+917811 831 313">+91 7811 831 313</a>
+					</div>
+					<div class="contact-card">
+						<h3>Email</h3>
+						<p>Send us an email for detailed information</p>
+						<a href="mailto:info@mydearcitybuilders.com"
+							>info@mydearcitybuilders.com</a
+						>
+					</div>
+					<div class="contact-card">
+						<h3>Address</h3>
+						<p>Visit our office for a face-to-face discussion</p>
+						<a href="https://maps.app.goo.gl/v2PfV1emzFEGDrkt6" target="_blank"
+							>RA - 31, Tara Shankar Sarani, City Center, Durgapur, West
+							Bengal, 713216</a
+						>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer class="footer">
+			<div class="footer-content">
+				<div class="footer-copyright">
+					© 2025 MyDearCity Builders All Rights Reserved | Developed &
+					Maintained by Maity Innovations Pvt. Ltd
+				</div>
+				<div class="footer-links">
+					<a href="/privacy-policy" class="footer-link">Privacy Policy</a>
+					<span class="footer-divider">|</span>
+					<a href="/terms" class="footer-link">Terms & Conditions</a>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
